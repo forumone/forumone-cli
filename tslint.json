@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "@oclif/tslint",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "prettier": true,
+    "no-unused": false,
+    "file-name-casing": false,
+    "prefer-const": true
+  },
+  "linterOptions": { "exclude": ["**/*.json"] }
+}
