@@ -4,6 +4,7 @@ export interface RunDockerOptions extends RunProcessOptions {
   dockerArgs?: ReadonlyArray<string>;
 }
 
+// Runs a one-off Docker container in the specified directory.
 async function runDocker(
   service: string,
   serviceArgs: ReadonlyArray<string>,

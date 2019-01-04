@@ -5,7 +5,8 @@ export interface RunProcessOptions extends Options {
   // Require a cwd since $PWD isn't necessarily the project root
   cwd: string;
 
-  // Whether or not to actually run the command being given.
+  // Whether or not to actually run the command being given. When true, we just dump the command
+  // and environment instead of running it.
   dryRun: boolean;
 }
 

@@ -3,6 +3,11 @@ import path from 'path';
 
 import Project from './Project';
 
+/**
+ * Returns information about the project in the current directory, if any is available.
+ *
+ * @param directory The directory in which to begin the search (defaults to `$CWD`).
+ */
 async function findProject(directory = process.cwd()): Promise<Project | null> {
   const composePath = await findUp('docker-compose.yml', { cwd: directory });
   if (composePath !== null) {

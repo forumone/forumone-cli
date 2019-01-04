@@ -13,18 +13,21 @@ async function startGruntProject(root: string, dryRun: boolean) {
 }
 
 async function startComposeProject(root: string, options: StartProjectOptions) {
-  // Foreground is the default in compose, but not in f1-cli
-  const foregroundArgs = options.foreground ? [] : ['--detach'];
+  // When running in the foreground, bring down the cluster if a container crashes. This can aid in
+  // debugging the setup.
+  const runArgs = options.foreground
+    ? ['--abort-on-container-exit']
+    : ['--detach'];
 
   const environment: NodeJS.ProcessEnv = { PWD: root };
 
-  // Add local IP address for XDebug to find
+  // Add local IP address for XDebug to find. See comments in the function for why.
   const address = findNetworkAddress();
   if (address) {
     environment.F1_XDEBUG_REMOTE = address;
   }
 
-  return runProcess('docker-compose', ['up', '--build', ...foregroundArgs], {
+  return runProcess('docker-compose', ['up', '--build', ...runArgs], {
     cwd: root,
     dryRun: options.dryRun,
     env: environment,

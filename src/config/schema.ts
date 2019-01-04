@@ -29,6 +29,7 @@ export interface Configuration {
   };
 }
 
+// Prettify validation errors. Inspired by Webpack's `WebpackOptionsValidationError` class.
 function formatValidationError(error: ajv.ErrorObject): string {
   switch (error.keyword) {
     case 'additionalProperties': {

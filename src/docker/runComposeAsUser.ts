@@ -3,6 +3,7 @@ import runComposeService, {
   RunComposeServiceOptions,
 } from './runComposeService';
 
+// Runs a docker-compose service as the host machine's user.
 async function runComposeAsUser(
   service: string,
   serviceArgs: ReadonlyArray<string>,

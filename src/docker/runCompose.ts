@@ -7,6 +7,9 @@ export interface RunComposeOptions extends RunProcessOptions {
   extraFiles?: ReadonlyArray<string>;
 }
 
+// Runs docker-compose in a specific directory. If extra files are passed in (i.e., the cli.yml file),
+// this function arranges for the main compose and override files to be present in the flags. This
+// allows CLI containers to attach to the project's network and see mounted volumes.
 async function runCompose(
   composeArgs: ReadonlyArray<string>,
   { extraFiles, cwd, ...options }: RunComposeOptions,

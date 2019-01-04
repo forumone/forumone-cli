@@ -5,11 +5,12 @@ export interface CreateProjectOptions {
   dryRun: boolean;
 }
 
+// Use `npx' to ensure that users always have the latest generator version.
 async function createProject({ directory, dryRun }: CreateProjectOptions) {
-  return runNpx(['yo', 'web-starter-2'], {
+  return runNpx(['yo', 'web-starter'], {
     cwd: directory,
     dryRun,
-    packages: [], // ['yo', 'web-starter'],
+    packages: ['yo', 'web-starter'],
   });
 }
 
