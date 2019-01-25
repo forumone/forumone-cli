@@ -21,6 +21,9 @@ export default class New extends Command {
     'dry-run': flags.boolean({
       description: 'print command instead of running',
     }),
+    next: flags.boolean({
+      description: 'use prerelease generator for testing ',
+    }),
   };
 
   static args = [
@@ -60,6 +63,7 @@ export default class New extends Command {
     return createProject({
       directory: targetDirectory,
       dryRun: flags['dry-run'],
+      next: flags.next,
     });
   }
 }
