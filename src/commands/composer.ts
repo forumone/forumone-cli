@@ -1,8 +1,7 @@
 import { Command, flags } from '@oclif/command';
-import path from 'path';
 
-import getConfiguration from '../config/getConfiguration';
-import runDockerAsUser from '../docker/runDockerAsUser';
+import runComposeAsUser from '../docker/runComposeAsUser';
+import findProject from '../project/findProject';
 
 export default class Composer extends Command {
   static description = 'run composer commands';
@@ -20,30 +19,18 @@ export default class Composer extends Command {
   async run() {
     const { argv, flags } = this.parse(Composer);
 
-    const result = await getConfiguration();
-    if (result === null) {
+    const project = await findProject();
+    if (project === null || project.type !== 'compose') {
       return this.error(
-        'Unable to run composer due to missing configuration file',
+        'Could not find a docker-compose.yml file in the current directory or any parent',
         { exit: 1 },
       );
     }
 
-    const { config, root } = result;
-
-    const projectDirectory = config.composer && config.composer.project;
-    if (projectDirectory === undefined) {
-      return this.error(
-        'Unable to run composer because no project directory has been defined.',
-        { exit: 1 },
-      );
-    }
-
-    const pwd = path.resolve(root, projectDirectory);
-
-    return runDockerAsUser('composer:1.7', argv, {
-      cwd: pwd,
+    return runComposeAsUser('composer', argv, {
+      cwd: project.root,
       dryRun: flags['dry-run'],
-      dockerArgs: ['-v', `${pwd}:/app`],
+      extraFiles: ['docker-compose.cli.yml'],
     });
   }
 }
