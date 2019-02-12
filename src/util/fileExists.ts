@@ -17,4 +17,13 @@ async function fileExists(path: string): Promise<boolean> {
   }
 }
 
+export function fileExistsSync(path: string): boolean {
+  try {
+    fs.accessSync(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export default fileExists;
