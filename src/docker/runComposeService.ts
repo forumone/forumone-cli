@@ -4,7 +4,7 @@ export interface RunComposeServiceOptions extends RunComposeOptions {
   composeArgs?: ReadonlyArray<string>;
 }
 
-async function runComposeService(
+function runComposeService(
   service: string,
   serviceArgs: ReadonlyArray<string>,
   { composeArgs = [], cwd, ...options }: RunComposeServiceOptions,

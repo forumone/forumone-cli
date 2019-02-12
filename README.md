@@ -29,6 +29,8 @@ USAGE
 * [`f1 init`](#f-1-init)
 * [`f1 new TARGET`](#f-1-new-target)
 * [`f1 run SERVICE`](#f-1-run-service)
+* [`f1 theme:build`](#f-1-themebuild)
+* [`f1 theme:watch`](#f-1-themewatch)
 * [`f1 up`](#f-1-up)
 
 ## `f1 composer`
@@ -146,6 +148,40 @@ OPTIONS
 ```
 
 _See code: [src/commands/run.ts](https://github.com/forumone/forumone-cli/blob/v1.0.0-rc.1/src/commands/run.ts)_
+
+## `f1 theme:build`
+
+run gesso-related build tasks
+
+```
+USAGE
+  $ f1 theme:build
+
+OPTIONS
+  -h, --help     show CLI help
+  --css          build CSS
+  --dry-run      print command instead of running
+  --pattern-lab  build PL
+```
+
+_See code: [src/commands/theme/build.ts](https://github.com/forumone/forumone-cli/blob/v1.0.0-rc.1/src/commands/theme/build.ts)_
+
+## `f1 theme:watch`
+
+run gesso-related watch tasks
+
+```
+USAGE
+  $ f1 theme:watch
+
+OPTIONS
+  -h, --help     show CLI help
+  --css          watch CSS
+  --dry-run      print command instead of running
+  --pattern-lab  watch PL
+```
+
+_See code: [src/commands/theme/watch.ts](https://github.com/forumone/forumone-cli/blob/v1.0.0-rc.1/src/commands/theme/watch.ts)_
 
 ## `f1 up`
 

@@ -1,4 +1,4 @@
-import execa, { Options } from 'execa';
+import execa, { ExecaChildProcess, Options } from 'execa';
 import path from 'path';
 
 export interface RunProcessOptions extends Options {
@@ -10,11 +10,13 @@ export interface RunProcessOptions extends Options {
   dryRun: boolean;
 }
 
-async function runProcess(
+const ignoreKeys: Array<keyof Options> = ['stderr', 'stdin', 'stdout'];
+
+function runProcess(
   file: string,
   args: ReadonlyArray<string>,
   { dryRun, ...options }: RunProcessOptions,
-): Promise<unknown> {
+): void | ExecaChildProcess {
   if (dryRun) {
     const target = path.relative(process.cwd(), options.cwd);
     process.stdout.write(`DIR: ${target}\n`);
@@ -31,7 +33,12 @@ async function runProcess(
     return;
   }
 
-  return execa(file, args, { stdio: 'inherit', ...options });
+  // Don't include 'stdio' option if conflicting options are present
+  const execaOptions: Options = ignoreKeys.some(key => Boolean(options[key]))
+    ? { stdin: 'ignore', stdout: 'inherit', stderr: 'inherit', ...options }
+    : { stdio: 'inherit', ...options };
+
+  return execa(file, args, execaOptions);
 }
 
 export default runProcess;
