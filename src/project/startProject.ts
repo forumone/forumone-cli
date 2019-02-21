@@ -6,6 +6,7 @@ import Project from './Project';
 export interface StartProjectOptions {
   dryRun: boolean;
   foreground: boolean;
+  xdebug?: boolean;
 }
 
 async function startGruntProject(root: string, dryRun: boolean) {
@@ -25,6 +26,10 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
   const address = findNetworkAddress();
   if (address) {
     environment.F1_XDEBUG_REMOTE = address;
+  }
+
+  if (options.xdebug) {
+    environment.F1_XDEBUG = '1';
   }
 
   return runProcess('docker-compose', ['up', '--build', ...runArgs], {
