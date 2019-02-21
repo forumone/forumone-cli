@@ -15,6 +15,7 @@ export default class Up extends Command {
       char: 'f',
       description: 'run compose in the foreground',
     }),
+    xdebug: flags.boolean({ description: 'enable xdebug in the container' }),
   };
 
   async run() {
@@ -32,6 +33,7 @@ export default class Up extends Command {
     return startProject(project, {
       dryRun: flags['dry-run'],
       foreground: flags.foreground,
+      xdebug: flags.xdebug,
     });
   }
 }
