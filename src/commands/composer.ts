@@ -1,4 +1,7 @@
 import { Command, flags } from '@oclif/command';
+import envPaths from 'env-paths';
+import makeDir from 'make-dir';
+import path from 'path';
 
 import runComposeAsUser from '../docker/runComposeAsUser';
 import findProject from '../project/findProject';
@@ -27,10 +30,22 @@ export default class Composer extends Command {
       );
     }
 
+    const { cache } = envPaths('forumone-cli');
+    const composerCachePath = path.join(cache, 'composer');
+
+    const mounts: string[] = [];
+    try {
+      await makeDir(composerCachePath);
+      mounts.push('-v', composerCachePath + ':/tmp/cache:cached');
+    } catch {
+      // Ignore errors
+    }
+
     return runComposeAsUser('composer', argv, {
       cwd: project.root,
       dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
+      composeArgs: mounts,
     });
   }
 }

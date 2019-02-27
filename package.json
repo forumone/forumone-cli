@@ -1,7 +1,7 @@
 {
   "name": "forumone-cli",
   "description": "CLI wrapper for Docker-based projects",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "author": "Forum One",
   "bin": {
     "f1": "./bin/run"
@@ -13,9 +13,11 @@
     "@oclif/plugin-help": "^2.1.4",
     "ajv": "6.6.2",
     "cosmiconfig": "5.0.7",
+    "env-paths": "2.0.0",
     "execa": "1.0.0",
     "find-up": "3.0.0",
     "globby": "^8.0.2",
+    "make-dir": "2.0.0",
     "merge2": "1.2.3",
     "split2": "3.1.0",
     "tslib": "^1.9.3",
@@ -26,9 +28,11 @@
     "@oclif/tslint": "^3.1.1",
     "@types/chai": "^4.1.7",
     "@types/cosmiconfig": "5.0.3",
+    "@types/env-paths": "1.0.2",
     "@types/execa": "0.9.0",
     "@types/find-up": "2.1.1",
     "@types/json-schema": "7.0.1",
+    "@types/make-dir": "1.0.3",
     "@types/merge2": "1.1.4",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.18",
