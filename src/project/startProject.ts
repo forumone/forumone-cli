@@ -1,3 +1,4 @@
+import getCertificates from '../cert';
 import runProcess from '../process/runProcess';
 import findNetworkAddress from '../util/findNetworkAddress';
 
@@ -21,6 +22,13 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
     : ['--detach'];
 
   const environment: NodeJS.ProcessEnv = { PWD: root };
+
+  if (!options.dryRun) {
+    const { certificate, certificateKey } = await getCertificates();
+
+    environment.F1_TLS_CERT = certificate;
+    environment.F1_TLS_KEY = certificateKey;
+  }
 
   // Add local IP address for XDebug to find. See comments in the function for why.
   const address = findNetworkAddress();

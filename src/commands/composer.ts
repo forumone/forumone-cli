@@ -1,10 +1,9 @@
 import { Command, flags } from '@oclif/command';
-import envPaths from 'env-paths';
 import makeDir from 'make-dir';
-import path from 'path';
 
 import runComposeAsUser from '../docker/runComposeAsUser';
 import findProject from '../project/findProject';
+import cachePath from '../util/cachePath';
 
 export default class Composer extends Command {
   static description = 'run composer commands';
@@ -30,8 +29,7 @@ export default class Composer extends Command {
       );
     }
 
-    const { cache } = envPaths('forumone-cli');
-    const composerCachePath = path.join(cache, 'composer');
+    const composerCachePath = cachePath('composer');
 
     const mounts: string[] = [];
     try {
