@@ -1,6 +1,6 @@
 import { Command, flags } from '@oclif/command';
 
-import runComposeAsUser from '../docker/runComposeAsUser';
+import runComposeWithSsh from '../docker/runComposeWithSsh';
 import findProject from '../project/findProject';
 
 export default class Wp extends Command {
@@ -26,7 +26,7 @@ export default class Wp extends Command {
       );
     }
 
-    return runComposeAsUser('wp', argv, {
+    return runComposeWithSsh('wp', argv, {
       cwd: project.root,
       dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
