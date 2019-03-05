@@ -32,6 +32,7 @@ USAGE
 * [`f1 theme:build`](#f-1-themebuild)
 * [`f1 theme:watch`](#f-1-themewatch)
 * [`f1 up`](#f-1-up)
+* [`f1 wp`](#f-1-wp)
 
 ## `f1 composer`
 
@@ -199,4 +200,19 @@ OPTIONS
 ```
 
 _See code: [src/commands/up.ts](https://github.com/forumone/forumone-cli/blob/v1.0.0-rc.4/src/commands/up.ts)_
+
+## `f1 wp`
+
+run wp-cli commands
+
+```
+USAGE
+  $ f1 wp
+
+OPTIONS
+  -h, --help  show CLI help
+  --dry-run   print command instead of running it
+```
+
+_See code: [src/commands/wp.ts](https://github.com/forumone/forumone-cli/blob/v1.0.0-rc.4/src/commands/wp.ts)_
 <!-- commandsstop -->
