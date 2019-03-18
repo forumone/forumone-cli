@@ -1,9 +1,7 @@
 import { Command, flags } from '@oclif/command';
-import makeDir from 'make-dir';
 
-import runComposeAsUser from '../docker/runComposeAsUser';
+import runComposer from '../docker/runComposer';
 import findProject from '../project/findProject';
-import cachePath from '../util/cachePath';
 
 export default class Composer extends Command {
   static description = 'run composer commands';
@@ -29,21 +27,10 @@ export default class Composer extends Command {
       );
     }
 
-    const composerCachePath = cachePath('composer');
-
-    const mounts: string[] = [];
-    try {
-      await makeDir(composerCachePath);
-      mounts.push('-v', composerCachePath + ':/tmp/cache:cached');
-    } catch {
-      // Ignore errors
-    }
-
-    return runComposeAsUser('composer', argv, {
-      cwd: project.root,
+    return runComposer({
+      args: argv,
       dryRun: flags['dry-run'],
-      extraFiles: ['docker-compose.cli.yml'],
-      composeArgs: mounts,
+      project,
     });
   }
 }

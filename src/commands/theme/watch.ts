@@ -1,30 +1,15 @@
 import { Command, flags } from '@oclif/command';
 import { ExecaChildProcess } from 'execa';
 
-import runComposeService from '../../docker/runComposeService';
+import {
+  installPatternLabDependencies,
+  runPatternLabWatch,
+  runStylesWatch,
+} from '../../docker/gesso';
 import runParallelProcesses, {
   NamedChild,
 } from '../../process/runParallelProcesses';
 import findProject from '../../project/findProject';
-import Project from '../../project/Project';
-
-function runGessoContainer(project: Project, dryRun: boolean) {
-  return runComposeService('gesso', [], {
-    cwd: project.root,
-    dryRun,
-    extraFiles: ['docker-compose.cli.yml'],
-    stdout: 'pipe',
-  });
-}
-
-function runPatternLabContainer(project: Project, dryRun: boolean) {
-  return runComposeService('pattern-lab', [], {
-    cwd: project.root,
-    dryRun,
-    extraFiles: ['docker-compose.cli.yml'],
-    stdout: 'pipe',
-  });
-}
 
 export default class ThemeWatch extends Command {
   static description = 'run gesso-related watch tasks';
@@ -50,30 +35,26 @@ export default class ThemeWatch extends Command {
       );
     }
 
+    // If this is true, then the user specified either both --css and --pattern-lab,
+    // or neither.
+    const watchBoth = flags.css === flags['pattern-lab'];
+    const watchStyles = watchBoth || flags.css;
+    const watchPatternLab = watchBoth || flags['pattern-lab'];
+
+    await installPatternLabDependencies(project, dryRun);
+
     const processes: NamedChild[] = [];
-    if (flags.css === flags['pattern-lab']) {
-      // In this branch, either both --css and --pattern-lab were present, or neither.
-      // We can't default to 'true' for these variables because oclif doesn't support
-      // a --no-foo option to disable it.
-
+    if (watchStyles) {
       processes.push([
         'gesso',
-        runGessoContainer(project, dryRun) as ExecaChildProcess,
+        runStylesWatch(project, dryRun) as ExecaChildProcess,
       ]);
+    }
 
+    if (watchPatternLab) {
       processes.push([
         'pattern-lab',
-        runPatternLabContainer(project, dryRun) as ExecaChildProcess,
-      ]);
-    } else if (flags.css) {
-      processes.push([
-        'gesso',
-        runGessoContainer(project, dryRun) as ExecaChildProcess,
-      ]);
-    } else if (flags['pattern-lab']) {
-      processes.push([
-        'pattern-lab',
-        runPatternLabContainer(project, dryRun) as ExecaChildProcess,
+        runPatternLabWatch(project, dryRun) as ExecaChildProcess,
       ]);
     }
 
