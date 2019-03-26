@@ -12,7 +12,7 @@ export interface RunComposeOptions extends RunProcessOptions {
 // allows CLI containers to attach to the project's network and see mounted volumes.
 function runCompose(
   composeArgs: ReadonlyArray<string>,
-  { extraFiles, cwd, ...options }: RunComposeOptions,
+  { extraFiles, cwd, env: inputEnv, ...options }: RunComposeOptions,
 ) {
   const fileArguments: string[] = [];
   if (extraFiles) {
@@ -26,8 +26,14 @@ function runCompose(
     }
   }
 
+  const env: NodeJS.ProcessEnv = {
+    PWD: cwd,
+    ...inputEnv,
+  };
+
   return runProcess('docker-compose', [...fileArguments, ...composeArgs], {
     cwd,
+    env,
     ...options,
   });
 }

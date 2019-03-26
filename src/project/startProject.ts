@@ -1,4 +1,5 @@
 import getCertificates from '../cert';
+import runCompose from '../docker/runCompose';
 import runProcess from '../process/runProcess';
 import findNetworkAddress from '../util/findNetworkAddress';
 
@@ -21,7 +22,7 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
     ? ['--abort-on-container-exit']
     : ['--detach'];
 
-  const environment: NodeJS.ProcessEnv = { PWD: root };
+  const environment: NodeJS.ProcessEnv = {};
 
   if (!options.dryRun) {
     const { certificate, certificateKey } = await getCertificates();
@@ -40,7 +41,7 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
     environment.F1_XDEBUG = '1';
   }
 
-  return runProcess('docker-compose', ['up', '--build', ...runArgs], {
+  return runCompose(['up', '--build', ...runArgs], {
     cwd: root,
     dryRun: options.dryRun,
     env: environment,
