@@ -11,6 +11,7 @@
     "@oclif/command": "^1.5.8",
     "@oclif/config": "^1.10.4",
     "@oclif/plugin-help": "^2.1.4",
+    "@oclif/plugin-warn-if-update-available": "1.7.0",
     "@octokit/rest": "16.16.3",
     "ajv": "6.6.2",
     "cosmiconfig": "5.0.7",
@@ -66,7 +67,8 @@
     "commands": "./lib/commands",
     "bin": "f1",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-warn-if-update-available"
     ],
     "topics": {
       "theme": {
