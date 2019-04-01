@@ -6,13 +6,12 @@ import findNetworkAddress from '../util/findNetworkAddress';
 import Project from './Project';
 
 export interface StartProjectOptions {
-  dryRun: boolean;
   foreground: boolean;
   xdebug?: boolean;
 }
 
-async function startGruntProject(root: string, dryRun: boolean) {
-  return runProcess('grunt', [], { cwd: root, dryRun });
+async function startGruntProject(root: string) {
+  return runProcess('grunt', [], { cwd: root });
 }
 
 async function startComposeProject(root: string, options: StartProjectOptions) {
@@ -22,14 +21,12 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
     ? ['--abort-on-container-exit']
     : ['--detach'];
 
-  const environment: NodeJS.ProcessEnv = {};
+  const { certificate, certificateKey } = await getCertificates();
 
-  if (!options.dryRun) {
-    const { certificate, certificateKey } = await getCertificates();
-
-    environment.F1_TLS_CERT = certificate;
-    environment.F1_TLS_KEY = certificateKey;
-  }
+  const environment: NodeJS.ProcessEnv = {
+    F1_TLS_CERT: certificate,
+    F1_TLS_KEY: certificateKey,
+  };
 
   // Add local IP address for XDebug to find. See comments in the function for why.
   const address = findNetworkAddress();
@@ -43,7 +40,6 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
 
   return runCompose(['up', '--build', ...runArgs], {
     cwd: root,
-    dryRun: options.dryRun,
     env: environment,
   });
 }
@@ -54,7 +50,7 @@ async function startProject(project: Project, options: StartProjectOptions) {
       return startComposeProject(project.root, options);
 
     case 'javascript':
-      return startGruntProject(project.root, options.dryRun);
+      return startGruntProject(project.root);
   }
 }
 

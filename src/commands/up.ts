@@ -30,10 +30,11 @@ export default class Up extends Command {
       );
     }
 
-    return startProject(project, {
-      dryRun: flags['dry-run'],
+    const command = await startProject(project, {
       foreground: flags.foreground,
       xdebug: flags.xdebug,
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

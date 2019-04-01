@@ -18,10 +18,11 @@ export default class Init extends Command {
   async run() {
     const { flags } = this.parse(Init);
 
-    return createProject({
+    const command = createProject({
       directory: process.cwd(),
-      dryRun: flags['dry-run'],
       next: flags.next,
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

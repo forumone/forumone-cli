@@ -4,7 +4,7 @@ export interface RunNpxOptions extends RunProcessOptions {
   packages: ReadonlyArray<string>;
 }
 
-async function runNpx(
+function runNpx(
   command: ReadonlyArray<string>,
   { packages, ...options }: RunNpxOptions,
 ) {

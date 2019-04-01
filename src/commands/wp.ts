@@ -26,10 +26,11 @@ export default class Wp extends Command {
       );
     }
 
-    return runComposeWithSsh('wp', argv, {
+    const command = await runComposeWithSsh('wp', argv, {
       cwd: project.root,
-      dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }
