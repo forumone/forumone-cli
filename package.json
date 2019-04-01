@@ -1,7 +1,7 @@
 {
   "name": "forumone-cli",
   "description": "CLI wrapper for Docker-based projects",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0",
   "author": "Forum One",
   "bin": {
     "f1": "./bin/run"
