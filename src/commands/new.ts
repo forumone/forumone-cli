@@ -60,10 +60,11 @@ export default class New extends Command {
       return this.error(error, { exit: 1 });
     }
 
-    return createProject({
+    const command = createProject({
       directory: targetDirectory,
-      dryRun: flags['dry-run'],
       next: flags.next,
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

@@ -31,10 +31,11 @@ export default class Run extends Command {
       );
     }
 
-    return runCompose(['run', '--rm', ...argv], {
+    const command = runCompose(['run', '--rm', ...argv], {
       cwd: project.root,
-      dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

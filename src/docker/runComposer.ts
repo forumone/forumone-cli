@@ -11,13 +11,11 @@ export interface RunComposerOptions {
    */
   serviceName?: string;
   args: ReadonlyArray<string>;
-  dryRun: boolean;
   project: Project;
 }
 
 async function runComposer({
   args,
-  dryRun,
   project,
   serviceName = 'composer',
 }: RunComposerOptions) {
@@ -33,7 +31,6 @@ async function runComposer({
 
   return runComposeAsUser(serviceName, args, {
     cwd: project.root,
-    dryRun,
     extraFiles: ['docker-compose.cli.yml'],
     composeArgs: mounts,
   });

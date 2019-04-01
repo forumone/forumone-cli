@@ -25,15 +25,16 @@ export default class Down extends Command {
       );
     }
 
-    const command = ['down'];
+    const downCommand = ['down'];
     if (flags.clean) {
-      command.push('--rmi', 'local', '--volumes');
+      downCommand.push('--rmi', 'local', '--volumes');
     }
 
-    return runCompose(command, {
+    const command = runCompose(downCommand, {
       cwd: project.root,
-      dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

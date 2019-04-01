@@ -1,5 +1,4 @@
 import { Command, flags } from '@oclif/command';
-import { ExecaChildProcess } from 'execa';
 
 import {
   installPatternLabDependencies,
@@ -7,7 +6,7 @@ import {
   runStylesWatch,
 } from '../../docker/gesso';
 import runParallelProcesses, {
-  NamedChild,
+  NamedCommand,
 } from '../../process/runParallelProcesses';
 import findProject from '../../project/findProject';
 
@@ -41,25 +40,35 @@ export default class ThemeWatch extends Command {
     const watchStyles = watchBoth || flags.css;
     const watchPatternLab = watchBoth || flags['pattern-lab'];
 
-    await installPatternLabDependencies(project, dryRun);
+    const install = await installPatternLabDependencies(project);
+    const stylesCommand = runStylesWatch(project);
+    const patternLabCommand = runPatternLabWatch(project);
 
-    const processes: NamedChild[] = [];
+    if (dryRun) {
+      install.dryRun();
+
+      if (watchStyles) {
+        stylesCommand.dryRun();
+      }
+
+      if (watchPatternLab) {
+        patternLabCommand.dryRun();
+      }
+
+      return;
+    }
+
+    await install.run();
+
+    const processes: NamedCommand[] = [];
     if (watchStyles) {
-      processes.push([
-        'gesso',
-        runStylesWatch(project, dryRun) as ExecaChildProcess,
-      ]);
+      processes.push({ ...stylesCommand, name: 'gesso' });
     }
 
     if (watchPatternLab) {
-      processes.push([
-        'pattern-lab',
-        runPatternLabWatch(project, dryRun) as ExecaChildProcess,
-      ]);
+      processes.push({ ...patternLabCommand, name: 'pattern-lab' });
     }
 
-    if (!dryRun) {
-      await runParallelProcesses(processes);
-    }
+    await runParallelProcesses(processes);
   }
 }

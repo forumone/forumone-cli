@@ -26,10 +26,11 @@ export default class Drush extends Command {
       );
     }
 
-    return runComposeWithSsh('drush', argv, {
+    const command = await runComposeWithSsh('drush', argv, {
       cwd: project.root,
-      dryRun: flags['dry-run'],
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

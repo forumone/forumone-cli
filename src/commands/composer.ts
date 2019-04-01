@@ -27,10 +27,11 @@ export default class Composer extends Command {
       );
     }
 
-    return runComposer({
+    const command = await runComposer({
       args: argv,
-      dryRun: flags['dry-run'],
       project,
     });
+
+    return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }
