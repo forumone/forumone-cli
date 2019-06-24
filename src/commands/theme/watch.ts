@@ -23,6 +23,12 @@ export default class ThemeWatch extends Command {
   };
 
   async run() {
+    process.emitWarning(
+      `The "theme:watch" command is deprecated and will be removed in a later release.
+
+For more information, please see https://github.com/forumone/generator-web-starter/wiki/Gesso-2.x-Container-Migration.`,
+    );
+
     const { flags } = this.parse(ThemeWatch);
     const dryRun = flags['dry-run'];
 
