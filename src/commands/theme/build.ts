@@ -11,7 +11,7 @@ import runParallelProcesses, {
 import findProject from '../../project/findProject';
 
 export default class ThemeBuild extends Command {
-  static description = 'run gesso-related build tasks';
+  static description = '[DEPRECATED] run gesso-related build tasks';
 
   static flags = {
     help: flags.help({ char: 'h' }),

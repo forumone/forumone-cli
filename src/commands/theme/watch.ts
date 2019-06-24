@@ -11,7 +11,7 @@ import runParallelProcesses, {
 import findProject from '../../project/findProject';
 
 export default class ThemeWatch extends Command {
-  static description = 'run gesso-related watch tasks';
+  static description = '[DEPRECATED] run gesso-related watch tasks';
 
   static flags = {
     help: flags.help({ char: 'h' }),
