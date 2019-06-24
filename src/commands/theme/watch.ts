@@ -11,7 +11,7 @@ import runParallelProcesses, {
 import findProject from '../../project/findProject';
 
 export default class ThemeWatch extends Command {
-  static description = 'run gesso-related watch tasks';
+  static description = '[DEPRECATED] run gesso-related watch tasks';
 
   static flags = {
     help: flags.help({ char: 'h' }),
@@ -23,6 +23,12 @@ export default class ThemeWatch extends Command {
   };
 
   async run() {
+    process.emitWarning(
+      `The "theme:watch" command is deprecated and will be removed in a later release.
+
+For more information, please see https://github.com/forumone/generator-web-starter/wiki/Gesso-2.x-Container-Migration.`,
+    );
+
     const { flags } = this.parse(ThemeWatch);
     const dryRun = flags['dry-run'];
 
