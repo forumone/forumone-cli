@@ -4,14 +4,36 @@ import path from 'path';
 import fileExists from '../util/fileExists';
 
 /**
+ * Creates a UNIX-friendly directory for mounting `$SSH_AUTH_SOCK` in a container.
+ */
+function getContainerDirectory(socketDirectory: string): string {
+  return socketDirectory;
+}
+
+/**
+ * Creates a synthetic directory for mounting a container in Windows.
+ */
+function getContainerDirectoryForWindows(socketDirectory: string): string {
+  const directoryName = path.basename(socketDirectory);
+
+  return path.posix.join('/root/.tmp', directoryName);
+}
+
+/**
  * Returns the Docker command-line options necessary to mount `$SSH_AUTH_SOCK` into a container.
  */
 async function getAuthSocketOptions(authSocket: string) {
   const socketDirectory = path.dirname(authSocket);
+  const getDirectory =
+    os.platform() === 'win32'
+      ? getContainerDirectoryForWindows
+      : getContainerDirectory;
+
+  const containerDirectory = getDirectory(socketDirectory);
 
   const args = [
     '-v',
-    `${socketDirectory}:${socketDirectory}`,
+    `${socketDirectory}:${containerDirectory}`,
     '-e',
     `SSH_AUTH_SOCK=${authSocket}`,
   ];
