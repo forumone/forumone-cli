@@ -22,6 +22,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`f1 cap:stage`](#f-1-capstage)
 * [`f1 composer`](#f-1-composer)
 * [`f1 down`](#f-1-down)
 * [`f1 drush`](#f-1-drush)
@@ -33,6 +34,21 @@ USAGE
 * [`f1 theme:watch`](#f-1-themewatch)
 * [`f1 up`](#f-1-up)
 * [`f1 wp`](#f-1-wp)
+
+## `f1 cap:stage`
+
+create new capistrano stage(s)
+
+```
+USAGE
+  $ f1 cap:stage
+
+OPTIONS
+  -h, --help  show CLI help
+  --dry-run   print command instead of running
+```
+
+_See code: [src/commands/cap/stage.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/cap/stage.ts)_
 
 ## `f1 composer`
 

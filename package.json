@@ -71,6 +71,9 @@
       "@oclif/plugin-warn-if-update-available"
     ],
     "topics": {
+      "cap": {
+        "description": "interact with capistrano"
+      },
       "theme": {
         "description": "manage gesso cli tasks"
       }
