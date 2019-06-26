@@ -13,7 +13,7 @@ $ npm install -g forumone-cli
 $ f1 COMMAND
 running command...
 $ f1 (-v|--version|version)
-forumone-cli/1.0.1 linux-x64 node-v10.15.1
+forumone-cli/1.0.2 linux-x64 node-v10.15.1
 $ f1 --help [COMMAND]
 USAGE
   $ f1 COMMAND
@@ -22,6 +22,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`f1 cap:stage`](#f-1-capstage)
 * [`f1 composer`](#f-1-composer)
 * [`f1 down`](#f-1-down)
 * [`f1 drush`](#f-1-drush)
@@ -33,6 +34,21 @@ USAGE
 * [`f1 theme:watch`](#f-1-themewatch)
 * [`f1 up`](#f-1-up)
 * [`f1 wp`](#f-1-wp)
+
+## `f1 cap:stage`
+
+create new capistrano stage(s)
+
+```
+USAGE
+  $ f1 cap:stage
+
+OPTIONS
+  -h, --help  show CLI help
+  --dry-run   print command instead of running
+```
+
+_See code: [src/commands/cap/stage.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/cap/stage.ts)_
 
 ## `f1 composer`
 
@@ -47,7 +63,7 @@ OPTIONS
   --dry-run   print command instead of running
 ```
 
-_See code: [src/commands/composer.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/composer.ts)_
+_See code: [src/commands/composer.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/composer.ts)_
 
 ## `f1 down`
 
@@ -63,7 +79,7 @@ OPTIONS
   --dry-run   print command instead of running
 ```
 
-_See code: [src/commands/down.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/down.ts)_
+_See code: [src/commands/down.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/down.ts)_
 
 ## `f1 drush`
 
@@ -78,7 +94,7 @@ OPTIONS
   --dry-run   print command instead of running it
 ```
 
-_See code: [src/commands/drush.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/drush.ts)_
+_See code: [src/commands/drush.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/drush.ts)_
 
 ## `f1 help [COMMAND]`
 
@@ -111,7 +127,7 @@ OPTIONS
   --next      use prerelease generator for testing
 ```
 
-_See code: [src/commands/init.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/init.ts)_
 
 ## `f1 new TARGET`
 
@@ -130,7 +146,7 @@ OPTIONS
   --next      use prerelease generator for testing
 ```
 
-_See code: [src/commands/new.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/new.ts)_
+_See code: [src/commands/new.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/new.ts)_
 
 ## `f1 run SERVICE`
 
@@ -148,7 +164,7 @@ OPTIONS
   --dry-run   print command instead of running it
 ```
 
-_See code: [src/commands/run.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/run.ts)_
+_See code: [src/commands/run.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/run.ts)_
 
 ## `f1 theme:build`
 
@@ -165,7 +181,7 @@ OPTIONS
   --pattern-lab  build PL
 ```
 
-_See code: [src/commands/theme/build.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/theme/build.ts)_
+_See code: [src/commands/theme/build.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/theme/build.ts)_
 
 ## `f1 theme:watch`
 
@@ -182,7 +198,7 @@ OPTIONS
   --pattern-lab  watch PL
 ```
 
-_See code: [src/commands/theme/watch.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/theme/watch.ts)_
+_See code: [src/commands/theme/watch.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/theme/watch.ts)_
 
 ## `f1 up`
 
@@ -199,7 +215,7 @@ OPTIONS
   --xdebug          enable xdebug in the container
 ```
 
-_See code: [src/commands/up.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/up.ts)_
+_See code: [src/commands/up.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/up.ts)_
 
 ## `f1 wp`
 
@@ -214,5 +230,5 @@ OPTIONS
   --dry-run   print command instead of running it
 ```
 
-_See code: [src/commands/wp.ts](https://github.com/forumone/forumone-cli/blob/v1.0.1/src/commands/wp.ts)_
+_See code: [src/commands/wp.ts](https://github.com/forumone/forumone-cli/blob/v1.0.2/src/commands/wp.ts)_
 <!-- commandsstop -->
