@@ -9,6 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "target": "es2017",
+    "preserveConstEnums": true,
     "composite": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
