@@ -1,5 +1,6 @@
 import { Command, flags } from '@oclif/command';
 
+import checkAgentStatus from '../docker/checkAgentStatus';
 import runComposeWithSsh from '../docker/runComposeWithSsh';
 import findProject from '../project/findProject';
 
@@ -25,6 +26,8 @@ export default class Drush extends Command {
         { exit: 1 },
       );
     }
+
+    await checkAgentStatus(this);
 
     const command = await runComposeWithSsh('drush', argv, {
       cwd: project.root,
