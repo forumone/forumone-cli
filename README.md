@@ -24,6 +24,7 @@ USAGE
 <!-- commands -->
 * [`f1 cap:stage`](#f-1-capstage)
 * [`f1 composer`](#f-1-composer)
+* [`f1 doctor`](#f-1-doctor)
 * [`f1 down`](#f-1-down)
 * [`f1 drush`](#f-1-drush)
 * [`f1 help [COMMAND]`](#f-1-help-command)
@@ -64,6 +65,21 @@ OPTIONS
 ```
 
 _See code: [src/commands/composer.ts](https://github.com/forumone/forumone-cli/blob/v1.2.0/src/commands/composer.ts)_
+
+## `f1 doctor`
+
+diagnose potential issues
+
+```
+USAGE
+  $ f1 doctor
+
+OPTIONS
+  -h, --help     show CLI help
+  -v, --verbose  print all checks
+```
+
+_See code: [src/commands/doctor.ts](https://github.com/forumone/forumone-cli/blob/v1.2.0/src/commands/doctor.ts)_
 
 ## `f1 down`
 
