@@ -1,29 +1,13 @@
 import Docker from 'dockerode';
 import os from 'os';
-import { promisify } from 'util';
-import which from 'which';
+
+import commandExists from '../util/commandExists';
 
 import AgentStatus from './AgentStatus';
 
-const whichAsync = promisify(which);
-
-async function pathExists(path: string): Promise<boolean> {
-  try {
-    // Discard the return value: it's not needed
-    await whichAsync(path);
-    return true;
-  } catch (error) {
-    // `which` returns a "not found" error when it doesn't successfully look up a path
-    if (error instanceof Error && error.message.startsWith('not found: ')) {
-      return false;
-    }
-    throw error;
-  }
-}
-
 async function hasForwardingInstalled(): Promise<boolean> {
-  const hasForwardCommand = await pathExists('pinata-ssh-forward');
-  const hasMountCommand = await pathExists('pinata-ssh-mount');
+  const hasForwardCommand = await commandExists('pinata-ssh-forward');
+  const hasMountCommand = await commandExists('pinata-ssh-mount');
 
   return hasForwardCommand && hasMountCommand;
 }
