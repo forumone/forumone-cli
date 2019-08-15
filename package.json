@@ -16,7 +16,7 @@
     "ajv": "6.6.2",
     "cosmiconfig": "5.0.7",
     "dockerode": "2.5.8",
-    "env-paths": "2.0.0",
+    "env-paths": "2.2.0",
     "execa": "1.0.0",
     "find-up": "3.0.0",
     "globby": "^8.0.2",
