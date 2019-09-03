@@ -22,6 +22,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`f1 build`](#f-1-build)
 * [`f1 cap:stage`](#f-1-capstage)
 * [`f1 composer`](#f-1-composer)
 * [`f1 doctor`](#f-1-doctor)
@@ -35,6 +36,22 @@ USAGE
 * [`f1 theme:watch`](#f-1-themewatch)
 * [`f1 up`](#f-1-up)
 * [`f1 wp`](#f-1-wp)
+
+## `f1 build`
+
+build or rebuild all images
+
+```
+USAGE
+  $ f1 build
+
+OPTIONS
+  -h, --help       show CLI help
+  --dry-run        print command instead of running
+  --[no-]parallel  build in parallel (defaults to true)
+```
+
+_See code: [src/commands/build.ts](https://github.com/forumone/forumone-cli/blob/v1.3.0/src/commands/build.ts)_
 
 ## `f1 cap:stage`
 
