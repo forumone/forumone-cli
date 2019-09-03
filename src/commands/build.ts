@@ -38,6 +38,7 @@ export default class Build extends Command {
 
     const command = await runCompose(buildCommand, {
       cwd: project.root,
+      extraFiles: ['docker-compose.cli.yml'],
     });
 
     return flags['dry-run'] ? command.dryRun() : command.run();
