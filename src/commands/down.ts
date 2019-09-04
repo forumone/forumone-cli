@@ -25,7 +25,13 @@ export default class Down extends Command {
       );
     }
 
-    const downCommand = ['down'];
+    // The --remove-orphans flag is used to alleviate potential issues when switching
+    // container definitions (e.g., switching from nginx to apache and forgetting to
+    // run `f1 down' before doing so).
+    //
+    // This is safe to do automatically since it only removes containers, not images or
+    // volumes.
+    const downCommand = ['down', '--remove-orphans'];
     if (flags.clean) {
       downCommand.push('--rmi', 'local', '--volumes');
     }
