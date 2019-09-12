@@ -36,9 +36,11 @@ module.exports = {
                 }
             }
         ],
+        "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/indent": "off",
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/member-delimiter-style": "off",
+        "@typescript-eslint/member-naming": "off",
         "@typescript-eslint/semi": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-explicit-any": "off",
@@ -54,6 +56,7 @@ module.exports = {
         "@typescript-eslint/no-this-alias": "error",
         "@typescript-eslint/no-unnecessary-qualifier": "error",
         "@typescript-eslint/no-unnecessary-type-assertion": "off",
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-use-before-declare": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/prefer-for-of": "error",
@@ -61,6 +64,7 @@ module.exports = {
         "@typescript-eslint/prefer-interface": "off",
         "@typescript-eslint/prefer-namespace-keyword": "error",
         "@typescript-eslint/promise-function-async": "off",
+        "@typescript-eslint/require-await": "off",
         "@typescript-eslint/restrict-plus-operands": "off",
         "@typescript-eslint/triple-slash-reference": ["error", {
           "path": "never",
@@ -74,6 +78,7 @@ module.exports = {
             "off",
             "as-needed"
         ],
+        "capitalized-comments": "off",
         "complexity": "off",
         "constructor-super": "error",
         "curly": "off",
@@ -106,6 +111,7 @@ module.exports = {
         "no-octal": "error",
         "no-octal-escape": "error",
         "no-regex-spaces": "error",
+        "no-restricted-syntax": "off",
         "no-return-await": "error",
         "no-sequences": "error",
         "no-sparse-arrays": "error",
@@ -116,6 +122,7 @@ module.exports = {
         "no-unused-labels": "error",
         "no-var": "error",
         "object-shorthand": "error",
+        "oclif/command-class-variables": "off",
         "one-var": "error",
         "prefer-const": "error",
         "prefer-object-spread": "error",
@@ -125,6 +132,6 @@ module.exports = {
         "space-before-function-paren": "off",
         "use-isnan": "error",
         "valid-typeof": "off",
-        "yoda": "error",
+        "yoda": "error"
     }
 };

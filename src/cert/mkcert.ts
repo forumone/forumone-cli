@@ -18,7 +18,7 @@ async function hasMkcert() {
 // We do this instead of using fs.constants because there isn't any guarantee of
 // availability for them, and having a constant like this is, frankly, easier to understand
 // than the S_* constants.
-// tslint:disable-next-line:no-bitwise
+// eslint-disable-next-line no-bitwise
 const readAndExecute = 0o400 | 0o100;
 
 /**
@@ -37,7 +37,7 @@ async function findMkcertRelease() {
 
   const release = releases.data.find(release => !release.prerelease);
   if (!release) {
-    throw new Error(`Unable to find a release for mkcert`);
+    throw new Error('Unable to find a release for mkcert');
   }
 
   // mkcert binaries follow a pretty standard naming convention, so we can construct the

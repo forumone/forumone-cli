@@ -39,6 +39,6 @@ export async function initializeStoragePaths() {
   const directories = [binaryPath, caPath, certPath];
 
   for (const directory of directories) {
-    await makeDir(storagePath(directory));
+    await makeDir(storagePath(directory)); // eslint-disable-line no-await-in-loop
   }
 }
