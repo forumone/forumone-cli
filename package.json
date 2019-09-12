@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.21.0",
-    "@oclif/tslint": "^3.1.1",
     "@types/chai": "^4.1.7",
     "@types/cosmiconfig": "5.0.3",
     "@types/dockerode": "2.5.20",
@@ -62,9 +61,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "prettier": "1.15.3",
     "ts-node": "^7.0.1",
-    "tslint": "^5.20.0",
-    "tslint-config-prettier": "1.17.0",
-    "tslint-plugin-prettier": "2.0.1",
     "typescript": "^3.2.2"
   },
   "engines": {
@@ -101,7 +97,7 @@
   "repository": "forumone/forumone-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
-    "posttest": "eslint \"src/**/*\" -f stylish --ext .ts",
+    "posttest": "eslint \"src/**\" -f stylish --ext .ts",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "tsc --noEmit -p .",
     "version": "oclif-dev readme && git add README.md"
