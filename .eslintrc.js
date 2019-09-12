@@ -13,7 +13,6 @@ module.exports = {
         "oclif",
         "prettier",
         "implicit-dependencies",
-        "jsdoc"
     ],
     "extends": [
         "xo",
@@ -86,6 +85,7 @@ module.exports = {
         "dot-notation": "error",
         "eol-last": "off",
         "guard-for-in": "error",
+        "implicit-dependencies/no-implicit": ["error", { optional: true }],
         "linebreak-style": "off",
         "max-classes-per-file": "off",
         "new-parens": "off",
