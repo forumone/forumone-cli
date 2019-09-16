@@ -12,15 +12,11 @@ module.exports = {
         "implicit-dependencies",
     ],
     "extends": [
-        "xo",
-        "xo/esnext",
-        "xo-typescript",
         "plugin:oclif/recommended",
         "plugin:prettier/recommended",
         "prettier/@typescript-eslint"
     ],
     "rules": {
-        "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/await-thenable": "off",
         "@typescript-eslint/explicit-member-accessibility": [
             "off",
@@ -31,10 +27,7 @@ module.exports = {
             }
         ],
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/indent": "off",
-        "@typescript-eslint/member-delimiter-style": "off",
         "@typescript-eslint/member-naming": "off",
-        "@typescript-eslint/semi": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-param-reassign": "off",
         "@typescript-eslint/no-parameter-properties": "off",
@@ -49,7 +42,6 @@ module.exports = {
           "types": "never",
           "lib": "never"
         }],
-        "@typescript-eslint/type-annotation-spacing": "off",
         "arrow-body-style": "error",
         "arrow-parens": [
             "off",

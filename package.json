@@ -53,8 +53,6 @@
     "@typescript-eslint/parser": "^2.2.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.3.0",
-    "eslint-config-xo": "^0.26.0",
-    "eslint-config-xo-typescript": "^0.18.0",
     "eslint-plugin-implicit-dependencies": "^1.0.4",
     "eslint-plugin-oclif": "^0.1.0",
     "eslint-plugin-prettier": "^3.1.0",
