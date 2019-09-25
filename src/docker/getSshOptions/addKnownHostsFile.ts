@@ -1,16 +1,7 @@
-import os from 'os';
-import path from 'path';
-
-import fileExists from '../../util/fileExists';
+import addWellKnownFile from './addWellKnownFile';
 
 async function addKnownHostsFile(): Promise<string[]> {
-  const knownHostsFile = path.join(os.homedir(), '.ssh/known_hosts');
-
-  if (await fileExists(knownHostsFile)) {
-    return ['-v', `${knownHostsFile}:${knownHostsFile}:ro`];
-  }
-
-  return [];
+  return addWellKnownFile('known_hosts');
 }
 
 export default addKnownHostsFile;

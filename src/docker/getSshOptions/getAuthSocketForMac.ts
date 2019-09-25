@@ -6,6 +6,7 @@ import AgentStatus from '../AgentStatus';
 import getAgentStatus from '../getAgentStatus';
 
 import addKnownHostsFile from './addKnownHostsFile';
+import addSshConfigFile from './addSshConfigFile';
 
 /**
  * Creates a synthetic `/etc/passwd` file for Mac users. At the top of `/etc/passwd` is
@@ -63,6 +64,7 @@ async function getAuthSocketForMac(): Promise<string[]> {
     '-v',
     `${passwdPath}:/etc/passwd:ro`,
     ...(await addKnownHostsFile()),
+    ...(await addSshConfigFile()),
   ];
 }
 

@@ -2,6 +2,7 @@ import os from 'os';
 import path from 'path';
 
 import addKnownHostsFile from './addKnownHostsFile';
+import addSshConfigFile from './addSshConfigFile';
 import getAuthSocketForMac from './getAuthSocketForMac';
 
 async function getAuthSocketForLinux(authSocket: string): Promise<string[]> {
@@ -15,6 +16,7 @@ async function getAuthSocketForLinux(authSocket: string): Promise<string[]> {
     '-e',
     `SSH_AUTH_SOCK=${authSocket}`,
     ...(await addKnownHostsFile()),
+    ...(await addSshConfigFile()),
   ];
 }
 
