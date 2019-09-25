@@ -1,16 +1,10 @@
-import os from 'os';
-import path from 'path';
+import addWellKnownFile from './addWellKnownFile';
 
-import fileExists from '../../util/fileExists';
-
+/**
+ * Returns the `docker run` flags necessary to share the user's known_hosts file.
+ */
 async function addKnownHostsFile(): Promise<string[]> {
-  const knownHostsFile = path.join(os.homedir(), '.ssh/known_hosts');
-
-  if (await fileExists(knownHostsFile)) {
-    return ['-v', `${knownHostsFile}:${knownHostsFile}:ro`];
-  }
-
-  return [];
+  return addWellKnownFile('known_hosts');
 }
 
 export default addKnownHostsFile;
