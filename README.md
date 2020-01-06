@@ -22,20 +22,20 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`f1 build`](#f-1-build)
-* [`f1 cap:stage`](#f-1-capstage)
-* [`f1 composer`](#f-1-composer)
-* [`f1 doctor`](#f-1-doctor)
-* [`f1 down`](#f-1-down)
-* [`f1 drush`](#f-1-drush)
-* [`f1 help [COMMAND]`](#f-1-help-command)
-* [`f1 init`](#f-1-init)
-* [`f1 new TARGET`](#f-1-new-target)
-* [`f1 run SERVICE`](#f-1-run-service)
-* [`f1 theme:build`](#f-1-themebuild)
-* [`f1 theme:watch`](#f-1-themewatch)
-* [`f1 up`](#f-1-up)
-* [`f1 wp`](#f-1-wp)
+* [`f1 build`](#f1-build)
+* [`f1 cap:stage`](#f1-capstage)
+* [`f1 composer`](#f1-composer)
+* [`f1 doctor`](#f1-doctor)
+* [`f1 down`](#f1-down)
+* [`f1 drush`](#f1-drush)
+* [`f1 help [COMMAND]`](#f1-help-command)
+* [`f1 init`](#f1-init)
+* [`f1 new TARGET`](#f1-new-target)
+* [`f1 run SERVICE`](#f1-run-service)
+* [`f1 theme:build`](#f1-themebuild)
+* [`f1 theme:watch`](#f1-themewatch)
+* [`f1 up`](#f1-up)
+* [`f1 wp`](#f1-wp)
 
 ## `f1 build`
 
