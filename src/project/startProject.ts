@@ -8,6 +8,7 @@ import Project from './Project';
 export interface StartProjectOptions {
   foreground: boolean;
   xdebug?: boolean;
+  xdebugProfile?: boolean;
 }
 
 async function startGruntProject(root: string) {
@@ -36,6 +37,10 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
 
   if (options.xdebug) {
     environment.F1_XDEBUG = '1';
+  }
+
+  if (options.xdebugProfile) {
+    environment.F1_XDEBUG_PROFILE = '1';
   }
 
   return runCompose(['up', '--build', ...runArgs], {
