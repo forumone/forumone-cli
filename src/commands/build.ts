@@ -16,6 +16,11 @@ export default class Build extends Command {
       default: true,
       description: 'build in parallel (defaults to true)',
     }),
+    pull: flags.boolean({
+      allowNo: true,
+      default: true,
+      description: 'pull latest docker image versions (defaults to true)',
+    }),
   };
 
   static args = [];
@@ -34,6 +39,9 @@ export default class Build extends Command {
     const buildCommand = ['build'];
     if (flags.parallel) {
       buildCommand.push('--parallel');
+    }
+    if (flags.pull) {
+      buildCommand.push('--pull');
     }
 
     const command = await runCompose(buildCommand, {
