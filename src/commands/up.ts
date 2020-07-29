@@ -16,6 +16,11 @@ export default class Up extends Command {
       description: 'run compose in the foreground',
     }),
     xdebug: flags.boolean({ description: 'enable xdebug in the container' }),
+    'xdebug-profile': flags.boolean({
+      description:
+        `Enables the triggering of xdebug's profiler. See https://xdebug.org/docs/profiler` +
+        ' for how to trigger these requests.',
+    }),
   };
 
   async run() {
@@ -33,6 +38,7 @@ export default class Up extends Command {
     const command = await startProject(project, {
       foreground: flags.foreground,
       xdebug: flags.xdebug,
+      xdebugProfile: flags['xdebug-profile'],
     });
 
     return flags['dry-run'] ? command.dryRun() : command.run();
