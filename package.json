@@ -44,7 +44,7 @@
     "@types/make-dir": "1.0.3",
     "@types/merge2": "1.1.4",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.17.6",
+    "@types/node": "^10.17.30",
     "@types/node-fetch": "2.1.6",
     "@types/semver": "6.0.1",
     "@types/split2": "2.1.6",
