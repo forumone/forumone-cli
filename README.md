@@ -13,7 +13,7 @@ $ npm install -g forumone-cli
 $ f1 COMMAND
 running command...
 $ f1 (-v|--version|version)
-forumone-cli/1.5.0 linux-x64 node-v10.15.1
+forumone-cli/1.5.0 darwin-x64 node-v10.16.3
 $ f1 --help [COMMAND]
 USAGE
   $ f1 COMMAND
@@ -49,6 +49,7 @@ OPTIONS
   -h, --help       show CLI help
   --dry-run        print command instead of running
   --[no-]parallel  build in parallel (defaults to true)
+  --[no-]pull      pull latest docker image versions (defaults to true)
 ```
 
 _See code: [src/commands/build.ts](https://github.com/forumone/forumone-cli/blob/v1.5.0/src/commands/build.ts)_
@@ -144,7 +145,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.2/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 
 ## `f1 init`
 
@@ -246,6 +247,9 @@ OPTIONS
   -h, --help        show CLI help
   --dry-run         print command instead of running
   --xdebug          enable xdebug in the container
+
+  --xdebug-profile  Enables the triggering of xdebug's profiler. See https://xdebug.org/docs/profiler for how to trigger
+                    these requests.
 ```
 
 _See code: [src/commands/up.ts](https://github.com/forumone/forumone-cli/blob/v1.5.0/src/commands/up.ts)_
