@@ -5,6 +5,7 @@ import {
   runPatternLabBuild,
   runStylesBuild,
 } from '../../docker/gesso';
+import { dryRunFlag, verboseFlag } from '../../flags';
 import runParallelProcesses, {
   NamedCommand,
 } from '../../process/runParallelProcesses';
@@ -15,11 +16,10 @@ export default class ThemeBuild extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
+    'dry-run': dryRunFlag,
     css: flags.boolean({ description: 'build CSS' }),
     'pattern-lab': flags.boolean({ description: 'build PL' }),
+    verbose: verboseFlag,
   };
 
   async run() {
@@ -31,6 +31,7 @@ For more information, please see https://github.com/forumone/generator-web-start
 
     const { flags } = this.parse(ThemeBuild);
     const dryRun = flags['dry-run'];
+    const verbose = flags['verbose'];
 
     const project = await findProject();
     if (project === null || project.type !== 'compose') {
@@ -64,6 +65,10 @@ For more information, please see https://github.com/forumone/generator-web-start
       return;
     }
 
+    // Run verbose output immediately before command execution.
+    if (verbose) {
+      install.dryRun();
+    }
     await install.run();
 
     const processes: NamedCommand[] = [];
@@ -75,6 +80,16 @@ For more information, please see https://github.com/forumone/generator-web-start
       processes.push({ ...patternLabCommand, name: 'pattern-lab' });
     }
 
+    // Run verbose output immediately before command execution.
+    if (verbose) {
+      if (buildStyles) {
+        stylesCommand.dryRun();
+      }
+
+      if (buildPatternLab) {
+        patternLabCommand.dryRun();
+      }
+    }
     await runParallelProcesses(processes);
   }
 }

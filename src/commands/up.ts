@@ -1,4 +1,5 @@
 import { Command, flags } from '@oclif/command';
+import { dryRunFlag, verboseFlag } from '../flags';
 
 import findProject from '../project/findProject';
 import startProject from '../project/startProject';
@@ -8,9 +9,8 @@ export default class Up extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
+    'dry-run': dryRunFlag,
+    verbose: verboseFlag,
     foreground: flags.boolean({
       char: 'f',
       description: 'run compose in the foreground',
@@ -40,6 +40,12 @@ export default class Up extends Command {
       xdebug: flags.xdebug,
       xdebugProfile: flags['xdebug-profile'],
     });
+
+    // eslint-disable-next-line no-console
+    console.log(flags);
+    if (flags['verbose']) {
+      command.dryRun();
+    }
 
     return flags['dry-run'] ? command.dryRun() : command.run();
   }

@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command';
 
 import runCompose from '../docker/runCompose';
+import { dryRunFlag, verboseFlag } from '../flags';
 import findProject from '../project/findProject';
 
 export default class Run extends Command {
@@ -8,9 +9,8 @@ export default class Run extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running it',
-    }),
+    'dry-run': dryRunFlag,
+    verbose: verboseFlag,
   };
 
   static args = [
@@ -35,6 +35,11 @@ export default class Run extends Command {
       cwd: project.root,
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    // Output command information before execution if the verbose flag is enabled.
+    if (flags['verbose'] && !flags['dry-run']) {
+      command.dryRun();
+    }
 
     return flags['dry-run'] ? command.dryRun() : command.run();
   }
