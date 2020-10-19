@@ -19,11 +19,11 @@ export default class New extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': dryRunFlag
+    'dry-run': dryRunFlag,
     next: flags.boolean({
       description: 'use prerelease generator for testing ',
     }),
-    verbose: verboseFlag
+    verbose: verboseFlag,
   };
 
   static args = [
