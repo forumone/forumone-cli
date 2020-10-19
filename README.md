@@ -47,6 +47,7 @@ USAGE
 
 OPTIONS
   -h, --help       show CLI help
+  -v, --verbose    print command information prior to execution
   --dry-run        print command instead of running
   --[no-]parallel  build in parallel (defaults to true)
   --[no-]pull      pull latest docker image versions (defaults to true)
@@ -63,8 +64,9 @@ USAGE
   $ f1 cap:stage
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running
 ```
 
 _See code: [src/commands/cap/stage.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/cap/stage.ts)_
@@ -78,8 +80,9 @@ USAGE
   $ f1 composer
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running
 ```
 
 _See code: [src/commands/composer.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/composer.ts)_
@@ -108,9 +111,10 @@ USAGE
   $ f1 down
 
 OPTIONS
-  -h, --help  show CLI help
-  --clean     remove images and volumes
-  --dry-run   print command instead of running
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --clean        remove images and volumes
+  --dry-run      print command instead of running
 ```
 
 _See code: [src/commands/down.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/down.ts)_
@@ -124,8 +128,9 @@ USAGE
   $ f1 drush
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running it
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/drush.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/drush.ts)_
@@ -156,9 +161,10 @@ USAGE
   $ f1 init
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running
-  --next      use prerelease generator for testing
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running
+  --next         use prerelease generator for testing
 ```
 
 _See code: [src/commands/init.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/init.ts)_
@@ -175,9 +181,10 @@ ARGUMENTS
   TARGET  directory name to create
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running
-  --next      use prerelease generator for testing
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running
+  --next         use prerelease generator for testing
 ```
 
 _See code: [src/commands/new.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/new.ts)_
@@ -194,8 +201,9 @@ ARGUMENTS
   SERVICE  compose service name
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running it
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/run.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/run.ts)_
@@ -210,6 +218,7 @@ USAGE
 
 OPTIONS
   -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
   --css          build CSS
   --dry-run      print command instead of running
   --pattern-lab  build PL
@@ -227,6 +236,7 @@ USAGE
 
 OPTIONS
   -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
   --css          watch CSS
   --dry-run      print command instead of running
   --pattern-lab  watch PL
@@ -245,6 +255,7 @@ USAGE
 OPTIONS
   -f, --foreground  run compose in the foreground
   -h, --help        show CLI help
+  -v, --verbose     print command information prior to execution
   --dry-run         print command instead of running
   --xdebug          enable xdebug in the container
 
@@ -263,8 +274,9 @@ USAGE
   $ f1 wp
 
 OPTIONS
-  -h, --help  show CLI help
-  --dry-run   print command instead of running it
+  -h, --help     show CLI help
+  -v, --verbose  print command information prior to execution
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/wp.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/wp.ts)_
