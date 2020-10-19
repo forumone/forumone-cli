@@ -12,4 +12,6 @@ export const dryRunFlag = flags.boolean({
 export const subGeneratorFlag = flags.string({
   description: 'run a specific sub-generator within generator-web-starter',
   options: ['manifest', 'buildkite-pipeline'],
+  // @todo Remove this dependency once the sub-generators are fully released.
+  dependsOn: ['next'],
 });
