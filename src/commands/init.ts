@@ -13,6 +13,10 @@ export default class Init extends Command {
     next: flags.boolean({
       description: 'use prerelease generator for testing',
     }),
+    verbose: flags.boolean({
+      char: 'v',
+      description: 'print command information prior to execution',
+    }),
   };
 
   async run() {
@@ -22,6 +26,11 @@ export default class Init extends Command {
       directory: process.cwd(),
       next: flags.next,
     });
+
+    // Output command information before execution if the verbose flag is enabled.
+    if (flags['verbose'] && !flags['dry-run']) {
+      command.dryRun();
+    }
 
     return flags['dry-run'] ? command.dryRun() : command.run();
   }

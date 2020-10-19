@@ -21,6 +21,10 @@ export default class Build extends Command {
       default: true,
       description: 'pull latest docker image versions (defaults to true)',
     }),
+    verbose: flags.boolean({
+      char: 'v',
+      description: 'print command information prior to execution',
+    }),
   };
 
   static args = [];
@@ -48,6 +52,11 @@ export default class Build extends Command {
       cwd: project.root,
       extraFiles: ['docker-compose.cli.yml'],
     });
+
+    // Output command information before execution if the verbose flag is enabled.
+    if (flags['verbose'] && !flags['dry-run']) {
+      command.dryRun();
+    }
 
     return flags['dry-run'] ? command.dryRun() : command.run();
   }

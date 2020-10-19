@@ -10,12 +10,21 @@ export default class CapStage extends Command {
     'dry-run': flags.boolean({
       description: 'print command instead of running',
     }),
+    verbose: flags.boolean({
+      char: 'v',
+      description: 'print command information prior to execution',
+    }),
   };
 
   async run() {
     const { flags } = this.parse(CapStage);
 
     const command = addCapStage();
+
+    // Output command information before execution if the verbose flag is enabled.
+    if (flags['verbose'] && !flags['dry-run']) {
+      command.dryRun();
+    }
     return flags['dry-run'] ? command.dryRun() : command.run();
   }
 }

@@ -24,6 +24,10 @@ export default class New extends Command {
     next: flags.boolean({
       description: 'use prerelease generator for testing ',
     }),
+    verbose: flags.boolean({
+      char: 'v',
+      description: 'print command information prior to execution',
+    }),
   };
 
   static args = [
@@ -64,6 +68,11 @@ export default class New extends Command {
       directory: targetDirectory,
       next: flags.next,
     });
+
+    // Output command information before execution if the verbose flag is enabled.
+    if (flags['verbose'] && !flags['dry-run']) {
+      command.dryRun();
+    }
 
     return flags['dry-run'] ? command.dryRun() : command.run();
   }
