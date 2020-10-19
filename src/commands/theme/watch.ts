@@ -5,6 +5,7 @@ import {
   runPatternLabWatch,
   runStylesWatch,
 } from '../../docker/gesso';
+import { dryRunFlag, verboseFlag } from '../../flags';
 import runParallelProcesses, {
   NamedCommand,
 } from '../../process/runParallelProcesses';
@@ -15,15 +16,10 @@ export default class ThemeWatch extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
+    'dry-run': dryRunFlag,
     css: flags.boolean({ description: 'watch CSS' }),
     'pattern-lab': flags.boolean({ description: 'watch PL' }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    verbose: verboseFlag,
   };
 
   async run() {

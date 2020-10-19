@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command';
 
 import runComposer from '../docker/runComposer';
+import { dryRunFlag, verboseFlag } from '../flags';
 import findProject from '../project/findProject';
 
 export default class Composer extends Command {
@@ -8,13 +9,8 @@ export default class Composer extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    'dry-run': dryRunFlag,
+    verbose: verboseFlag,
   };
 
   // Allow extra arguments (we forward them to composer)

@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import validFilename from 'valid-filename';
+import { dryRunFlag, verboseFlag } from '../flags';
 
 import createProject from '../project/createProject';
 
@@ -18,16 +19,11 @@ export default class New extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
+    'dry-run': dryRunFlag
     next: flags.boolean({
       description: 'use prerelease generator for testing ',
     }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    verbose: verboseFlag
   };
 
   static args = [

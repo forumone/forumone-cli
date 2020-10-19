@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command';
 
 import runCompose from '../docker/runCompose';
+import { dryRunFlag, verboseFlag } from '../flags';
 import findProject from '../project/findProject';
 
 export default class Build extends Command {
@@ -8,9 +9,7 @@ export default class Build extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
+    'dry-run': dryRunFlag,
     parallel: flags.boolean({
       allowNo: true,
       default: true,
@@ -21,10 +20,7 @@ export default class Build extends Command {
       default: true,
       description: 'pull latest docker image versions (defaults to true)',
     }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    verbose: verboseFlag,
   };
 
   static args = [];

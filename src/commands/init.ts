@@ -1,4 +1,5 @@
 import Command, { flags } from '@oclif/command';
+import { dryRunFlag, verboseFlag } from '../flags';
 
 import createProject from '../project/createProject';
 
@@ -6,17 +7,12 @@ export default class Init extends Command {
   static description = 'create a new project in the current directory';
 
   static flags = {
+    'dry-run': dryRunFlag,
     help: flags.help({ char: 'h' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
     next: flags.boolean({
       description: 'use prerelease generator for testing',
     }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    verbose: verboseFlag,
   };
 
   async run() {

@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command';
 
 import runCompose from '../docker/runCompose';
+import { dryRunFlag, verboseFlag } from '../flags';
 import findProject from '../project/findProject';
 
 export default class Down extends Command {
@@ -9,13 +10,8 @@ export default class Down extends Command {
   static flags = {
     help: flags.help({ char: 'h' }),
     clean: flags.boolean({ description: 'remove images and volumes' }),
-    'dry-run': flags.boolean({
-      description: 'print command instead of running',
-    }),
-    verbose: flags.boolean({
-      char: 'v',
-      description: 'print command information prior to execution',
-    }),
+    'dry-run': dryRunFlag,
+    verbose: verboseFlag,
   };
 
   async run() {
