@@ -6,5 +6,10 @@ export const verboseFlag = flags.boolean({
 });
 
 export const dryRunFlag = flags.boolean({
-  description: 'print command instead of running',
+  description: 'print command instead of running it',
+});
+
+export const subGeneratorFlag = flags.string({
+  description: 'run a specific sub-generator within generator-web-starter',
+  options: ['manifest', 'buildkite-pipeline'],
 });

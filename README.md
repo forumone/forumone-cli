@@ -48,7 +48,7 @@ USAGE
 OPTIONS
   -h, --help       show CLI help
   -v, --verbose    print command information prior to execution
-  --dry-run        print command instead of running
+  --dry-run        print command instead of running it
   --[no-]parallel  build in parallel (defaults to true)
   --[no-]pull      pull latest docker image versions (defaults to true)
 ```
@@ -66,7 +66,7 @@ USAGE
 OPTIONS
   -h, --help     show CLI help
   -v, --verbose  print command information prior to execution
-  --dry-run      print command instead of running
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/cap/stage.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/cap/stage.ts)_
@@ -82,7 +82,7 @@ USAGE
 OPTIONS
   -h, --help     show CLI help
   -v, --verbose  print command information prior to execution
-  --dry-run      print command instead of running
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/composer.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/composer.ts)_
@@ -114,7 +114,7 @@ OPTIONS
   -h, --help     show CLI help
   -v, --verbose  print command information prior to execution
   --clean        remove images and volumes
-  --dry-run      print command instead of running
+  --dry-run      print command instead of running it
 ```
 
 _See code: [src/commands/down.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/down.ts)_
@@ -161,10 +161,11 @@ USAGE
   $ f1 init
 
 OPTIONS
-  -h, --help     show CLI help
-  -v, --verbose  print command information prior to execution
-  --dry-run      print command instead of running
-  --next         use prerelease generator for testing
+  -h, --help                                   show CLI help
+  -v, --verbose                                print command information prior to execution
+  --dry-run                                    print command instead of running it
+  --next                                       use prerelease generator for testing
+  --sub-generator=manifest|buildkite-pipeline  run a specific sub-generator within generator-web-starter
 ```
 
 _See code: [src/commands/init.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/init.ts)_
@@ -181,10 +182,11 @@ ARGUMENTS
   TARGET  directory name to create
 
 OPTIONS
-  -h, --help     show CLI help
-  -v, --verbose  print command information prior to execution
-  --dry-run      print command instead of running
-  --next         use prerelease generator for testing
+  -h, --help                                   show CLI help
+  -v, --verbose                                print command information prior to execution
+  --dry-run                                    print command instead of running it
+  --next                                       use prerelease generator for testing
+  --sub-generator=manifest|buildkite-pipeline  run a specific sub-generator within generator-web-starter
 ```
 
 _See code: [src/commands/new.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/new.ts)_
@@ -220,7 +222,7 @@ OPTIONS
   -h, --help     show CLI help
   -v, --verbose  print command information prior to execution
   --css          build CSS
-  --dry-run      print command instead of running
+  --dry-run      print command instead of running it
   --pattern-lab  build PL
 ```
 
@@ -238,7 +240,7 @@ OPTIONS
   -h, --help     show CLI help
   -v, --verbose  print command information prior to execution
   --css          watch CSS
-  --dry-run      print command instead of running
+  --dry-run      print command instead of running it
   --pattern-lab  watch PL
 ```
 
@@ -256,7 +258,7 @@ OPTIONS
   -f, --foreground  run compose in the foreground
   -h, --help        show CLI help
   -v, --verbose     print command information prior to execution
-  --dry-run         print command instead of running
+  --dry-run         print command instead of running it
   --xdebug          enable xdebug in the container
 
   --xdebug-profile  Enables the triggering of xdebug's profiler. See https://xdebug.org/docs/profiler for how to trigger
