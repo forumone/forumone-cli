@@ -1,5 +1,5 @@
 import Command, { flags } from '@oclif/command';
-import { dryRunFlag, verboseFlag } from '../flags';
+import { dryRunFlag, subGeneratorFlag, verboseFlag } from '../flags';
 
 import createProject from '../project/createProject';
 
@@ -12,6 +12,7 @@ export default class Init extends Command {
     next: flags.boolean({
       description: 'use prerelease generator for testing',
     }),
+    'sub-generator': subGeneratorFlag,
     verbose: verboseFlag,
   };
 
@@ -21,6 +22,7 @@ export default class Init extends Command {
     const command = createProject({
       directory: process.cwd(),
       next: flags.next,
+      subgenerator: flags['sub-generator'],
     });
 
     // Output command information before execution if the verbose flag is enabled.

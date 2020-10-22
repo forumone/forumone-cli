@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 import validFilename from 'valid-filename';
-import { dryRunFlag, verboseFlag } from '../flags';
+import { dryRunFlag, subGeneratorFlag, verboseFlag } from '../flags';
 
 import createProject from '../project/createProject';
 
@@ -19,11 +19,12 @@ export default class New extends Command {
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    'dry-run': dryRunFlag
+    'dry-run': dryRunFlag,
     next: flags.boolean({
       description: 'use prerelease generator for testing ',
     }),
-    verbose: verboseFlag
+    'sub-generator': subGeneratorFlag,
+    verbose: verboseFlag,
   };
 
   static args = [
@@ -63,6 +64,7 @@ export default class New extends Command {
     const command = createProject({
       directory: targetDirectory,
       next: flags.next,
+      subgenerator: flags['sub-generator'],
     });
 
     // Output command information before execution if the verbose flag is enabled.
