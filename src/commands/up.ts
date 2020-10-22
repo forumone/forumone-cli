@@ -41,8 +41,6 @@ export default class Up extends Command {
       xdebugProfile: flags['xdebug-profile'],
     });
 
-    // eslint-disable-next-line no-console
-    console.log(flags);
     if (flags['verbose']) {
       command.dryRun();
     }
