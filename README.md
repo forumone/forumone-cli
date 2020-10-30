@@ -81,7 +81,11 @@ USAGE
 
 OPTIONS
   -h, --help     show CLI help
+                 Putting "--" at the end of your command, then adding additional flags (like --help) will run that flag
+                 on the native command
+
   -v, --verbose  print command information prior to execution
+
   --dry-run      print command instead of running it
 ```
 
@@ -129,7 +133,11 @@ USAGE
 
 OPTIONS
   -h, --help     show CLI help
+                 Putting "--" at the end of your command, then adding additional flags (like --help) will run that flag
+                 on the native command
+
   -v, --verbose  print command information prior to execution
+
   --dry-run      print command instead of running it
 ```
 
@@ -204,7 +212,11 @@ ARGUMENTS
 
 OPTIONS
   -h, --help     show CLI help
+                 Putting "--" at the end of your command, then adding additional flags (like --help) will run that flag
+                 on the native command
+
   -v, --verbose  print command information prior to execution
+
   --dry-run      print command instead of running it
 ```
 
@@ -277,7 +289,11 @@ USAGE
 
 OPTIONS
   -h, --help     show CLI help
+                 Putting "--" at the end of your command, then adding additional flags (like --help) will run that flag
+                 on the native command
+
   -v, --verbose  print command information prior to execution
+
   --dry-run      print command instead of running it
 ```
 
