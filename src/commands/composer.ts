@@ -8,7 +8,12 @@ export default class Composer extends Command {
   static description = 'run composer commands';
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: flags.help({
+      char: 'h',
+      description:
+        'show CLI help\r\n' +
+        'Putting "--" at the end of your command, then adding additional flags (like --help) will run that flag on the native command',
+    }),
     'dry-run': dryRunFlag,
     verbose: verboseFlag,
   };
