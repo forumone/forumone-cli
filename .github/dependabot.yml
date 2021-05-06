@@ -1,0 +1,26 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+    timezone: America/New_York
+  open-pull-requests-limit: 10
+  reviewers:
+  - gustavderdrache
+  - slucero
+  versioning-strategy: lockfile-only
+  ignore:
+  - dependency-name: "@types/chai"
+    versions:
+    - 4.2.16
+  - dependency-name: "@types/node-fetch"
+    versions:
+    - 2.5.9
+  - dependency-name: "@types/node"
+    versions:
+    - 10.17.51
+    - 10.17.52
+    - 10.17.54
+    - 10.17.56
