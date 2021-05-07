@@ -31,6 +31,7 @@ USAGE
 * [`f1 help [COMMAND]`](#f1-help-command)
 * [`f1 init`](#f1-init)
 * [`f1 new TARGET`](#f1-new-target)
+* [`f1 regen CONFIG TARGET`](#f1-negen-config-target)
 * [`f1 run SERVICE`](#f1-run-service)
 * [`f1 theme:build`](#f1-themebuild)
 * [`f1 theme:watch`](#f1-themewatch)
@@ -198,6 +199,26 @@ OPTIONS
 ```
 
 _See code: [src/commands/new.ts](https://github.com/forumone/forumone-cli/blob/v1.7.1/src/commands/new.ts)_
+
+## `f1 regen CONFIG TARGET`
+
+Regenerate a new project from an existing .yo-rc.json file.
+
+```
+USAGE
+  $ f1 regen CONFIG TARGET
+
+ARGUMENTS
+  CONFIG  path of .yo-rc.json file or project directory
+  TARGET  directory name to create
+
+OPTIONS
+  -h, --help  show CLI help
+  --dry-run   print command instead of running
+  --next      use prerelease generator for testing
+```
+
+_See code: [src/commands/regen.ts](https://github.com/forumone/forumone-cli/blob/v1.6.0/src/commands/regen.ts)_
 
 ## `f1 run SERVICE`
 
