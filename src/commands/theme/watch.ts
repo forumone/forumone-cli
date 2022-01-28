@@ -48,8 +48,8 @@ For more information, please see https://github.com/forumone/generator-web-start
     const watchPatternLab = watchBoth || flags['pattern-lab'];
 
     const install = await installPatternLabDependencies(project);
-    const stylesCommand = runStylesWatch(project);
-    const patternLabCommand = runPatternLabWatch(project);
+    const stylesCommand = await runStylesWatch(project);
+    const patternLabCommand = await runPatternLabWatch(project);
 
     if (dryRun) {
       install.dryRun();

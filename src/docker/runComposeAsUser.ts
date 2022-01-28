@@ -1,3 +1,4 @@
+import getCertificates from '../cert';
 import getUserGroupOptions from './getUserGroupOptions';
 import runComposeService, {
   RunComposeServiceOptions,
@@ -7,10 +8,19 @@ import runComposeService, {
 async function runComposeAsUser(
   service: string,
   serviceArgs: ReadonlyArray<string>,
-  { composeArgs = [], ...options }: RunComposeServiceOptions,
+  { composeArgs = [], env = {}, ...options }: RunComposeServiceOptions,
 ) {
+  const { certificate, certificateKey } = await getCertificates();
+
+  // These are only required so docker-compose doesn't see invalid volume specs.
+  const environment: NodeJS.ProcessEnv = {
+    F1_TLS_CERT: certificate,
+    F1_TLS_KEY: certificateKey,
+  };
+
   return runComposeService(service, serviceArgs, {
     ...options,
+    env: { ...environment, ...env },
     composeArgs: [...composeArgs, ...getUserGroupOptions()],
   });
 }

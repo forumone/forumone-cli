@@ -3,7 +3,14 @@ import fs from 'fs';
 
 import fileExists from '../util/fileExists';
 
-import { getCaCrtPath, getCaKeyPath, getCertificateKeyPath, getCertificatePath } from './paths';
+import {
+  getCaCrtPath,
+  getCaKeyPath,
+  getCaRoot,
+  getCertificateKeyPath,
+  getCertificatePath,
+  getCertificateRoot,
+} from './paths';
 
 /**
  * Determines if mkcert has already been run to generate certificates for web-starter.
@@ -27,8 +34,9 @@ async function installCertificates() {
       state: 'VA',
       validityDays: 365,
     });
-    fs.writeFileSync(getCaCrtPath(), ca.cert);
-    fs.writeFileSync(getCaKeyPath(), ca.key);
+    fs.mkdirSync(getCaRoot(), { recursive: true, mode: 0o700 });
+    fs.writeFileSync(getCaCrtPath(), ca.cert, { mode: 0o600 });
+    fs.writeFileSync(getCaKeyPath(), ca.key, { mode: 0o600 });
   }
 
   const ca = {
@@ -43,12 +51,9 @@ async function installCertificates() {
     domains: ['localhost', '127.0.0.1', '*.ddev.site'],
   });
 
-  fs.writeFileSync(getCertificatePath(), cert.cert, {
-    mode: 0o400,
-  });
-  fs.writeFileSync(getCertificateKeyPath(), cert.key, {
-    mode: 0o400,
-  });
+  fs.mkdirSync(getCertificateRoot(), { recursive: true, mode: 0o700 });
+  fs.writeFileSync(getCertificatePath(), cert.cert, { mode: 0o600 });
+  fs.writeFileSync(getCertificateKeyPath(), cert.key, { mode: 0o600 });
 }
 
 async function installCertificatesIfNeeded() {

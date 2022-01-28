@@ -36,7 +36,7 @@ export default class Down extends Command {
       downCommand.push('--rmi', 'local', '--volumes');
     }
 
-    const command = runCompose(downCommand, {
+    const command = await runCompose(downCommand, {
       cwd: project.root,
       extraFiles: ['docker-compose.cli.yml'],
     });

@@ -36,7 +36,7 @@ export default class Run extends Command {
       );
     }
 
-    const command = runCompose(['run', '--rm', ...argv], {
+    const command = await runCompose(['run', '--rm', ...argv], {
       cwd: project.root,
       extraFiles: ['docker-compose.cli.yml'],
     });
