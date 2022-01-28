@@ -34,7 +34,7 @@ async function installCertificates() {
       state: 'VA',
       validityDays: 365,
     });
-    fs.mkdirSync(getCaRoot(), { recursive: true, mode: 0o700 });
+
     fs.writeFileSync(getCaCrtPath(), ca.cert, { mode: 0o600 });
     fs.writeFileSync(getCaKeyPath(), ca.key, { mode: 0o600 });
   }
@@ -51,7 +51,6 @@ async function installCertificates() {
     domains: ['localhost', '127.0.0.1', '*.ddev.site'],
   });
 
-  fs.mkdirSync(getCertificateRoot(), { recursive: true, mode: 0o700 });
   fs.writeFileSync(getCertificatePath(), cert.cert, { mode: 0o600 });
   fs.writeFileSync(getCertificateKeyPath(), cert.key, { mode: 0o600 });
 }
