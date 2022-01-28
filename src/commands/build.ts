@@ -1,4 +1,5 @@
 import { Command, flags } from '@oclif/command';
+import getCertificates from '../cert';
 
 import runCompose from '../docker/runCompose';
 import { dryRunFlag, verboseFlag } from '../flags';
@@ -36,6 +37,14 @@ export default class Build extends Command {
       );
     }
 
+    const { certificate, certificateKey } = await getCertificates();
+
+    // These are only required so docker-compose doesn't see invalid volume specs.
+    const environment: NodeJS.ProcessEnv = {
+      F1_TLS_CERT: certificate,
+      F1_TLS_KEY: certificateKey,
+    };
+
     const buildCommand = ['build'];
     if (flags.parallel) {
       buildCommand.push('--parallel');
@@ -47,6 +56,7 @@ export default class Build extends Command {
     const command = await runCompose(buildCommand, {
       cwd: project.root,
       extraFiles: ['docker-compose.cli.yml'],
+      env: environment,
     });
 
     // Output command information before execution if the verbose flag is enabled.
