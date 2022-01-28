@@ -18,6 +18,8 @@ async function runCompose(
   const { certificate, certificateKey } = await getCertificates();
 
   // These are only required so docker-compose doesn't see invalid volume specs.
+  // Without them, volumes defined like "${F1_TLS_CERT}:/foo/local.crt"
+  // will end up as the invalid value ":/foo/local.crt".
   const environment: NodeJS.ProcessEnv = {
     F1_TLS_CERT: certificate,
     F1_TLS_KEY: certificateKey,
