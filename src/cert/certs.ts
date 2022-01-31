@@ -1,8 +1,16 @@
+import mkcert from 'mkcert';
+import fs from 'fs';
+
 import fileExists from '../util/fileExists';
 
-import installMkcertIfNeeded from './mkcert';
-import { getCertificateKeyPath, getCertificatePath } from './paths';
-import runMkcert from './runMkcert';
+import {
+  getCaCrtPath,
+  getCaKeyPath,
+  getCaRoot,
+  getCertificateKeyPath,
+  getCertificatePath,
+  getCertificateRoot,
+} from './paths';
 
 /**
  * Determines if mkcert has already been run to generate certificates for web-starter.
@@ -15,17 +23,36 @@ async function hasCertificates() {
 }
 
 async function installCertificates() {
-  await installMkcertIfNeeded();
+  const hasCaCrt = await fileExists(getCaCrtPath());
+  const hasCaKey = await fileExists(getCaKeyPath());
 
-  // Passing -cert-file and -key-file ensure that, no matter what we run, we get a
-  // consistent name for the files.
-  await runMkcert([
-    '-cert-file',
-    getCertificatePath(),
-    '-key-file',
-    getCertificateKeyPath(),
-    'localhost',
-  ]);
+  if (!hasCaCrt || !hasCaKey) {
+    const ca = await mkcert.createCA({
+      organization: 'F1 Test CA',
+      countryCode: 'US',
+      locality: 'Alexandria',
+      state: 'VA',
+      validityDays: 365,
+    });
+
+    fs.writeFileSync(getCaCrtPath(), ca.cert, { mode: 0o600 });
+    fs.writeFileSync(getCaKeyPath(), ca.key, { mode: 0o600 });
+  }
+
+  const ca = {
+    cert: fs.readFileSync(getCaCrtPath()).toString(),
+    key: fs.readFileSync(getCaKeyPath()).toString(),
+  };
+
+  const cert = await mkcert.createCert({
+    caCert: ca.cert,
+    caKey: ca.key,
+    validityDays: 365,
+    domains: ['localhost', '127.0.0.1', '*.ddev.site'],
+  });
+
+  fs.writeFileSync(getCertificatePath(), cert.cert, { mode: 0o600 });
+  fs.writeFileSync(getCertificateKeyPath(), cert.key, { mode: 0o600 });
 }
 
 async function installCertificatesIfNeeded() {

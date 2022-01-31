@@ -1,4 +1,3 @@
-import getCertificates from '../cert';
 import runCompose from '../docker/runCompose';
 import runProcess from '../process/runProcess';
 import findNetworkAddress from '../util/findNetworkAddress';
@@ -22,12 +21,7 @@ async function startComposeProject(root: string, options: StartProjectOptions) {
     ? ['--abort-on-container-exit']
     : ['--detach'];
 
-  const { certificate, certificateKey } = await getCertificates();
-
-  const environment: NodeJS.ProcessEnv = {
-    F1_TLS_CERT: certificate,
-    F1_TLS_KEY: certificateKey,
-  };
+  const environment: NodeJS.ProcessEnv = {};
 
   // Add local IP address for XDebug to find. See comments in the function for why.
   const address = findNetworkAddress();

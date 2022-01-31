@@ -2,22 +2,11 @@ import makeDir from 'make-dir';
 
 import storagePath from '../util/storagePath';
 
-import { getExecutableSuffix } from './system';
-
-const binaryPath = 'bin';
 const caPath = 'ca';
 const certPath = 'cert';
 
 export const certificateName = 'web-starter.crt';
 export const certificateKeyName = 'web-starter.key';
-
-function getMkcertName() {
-  return 'mkcert' + getExecutableSuffix();
-}
-
-export function getMkcertPath() {
-  return storagePath(binaryPath, getMkcertName());
-}
 
 export function getCaRoot() {
   return storagePath(caPath);
@@ -25,6 +14,14 @@ export function getCaRoot() {
 
 export function getCertificateRoot() {
   return storagePath(certPath);
+}
+
+export function getCaCrtPath() {
+  return storagePath(caPath, 'ca.crt');
+}
+
+export function getCaKeyPath() {
+  return storagePath(caPath, 'ca.key');
 }
 
 export function getCertificatePath() {
@@ -36,7 +33,7 @@ export function getCertificateKeyPath() {
 }
 
 export async function initializeStoragePaths() {
-  const directories = [binaryPath, caPath, certPath];
+  const directories = [caPath, certPath];
 
   for (const directory of directories) {
     await makeDir(storagePath(directory)); // eslint-disable-line no-await-in-loop

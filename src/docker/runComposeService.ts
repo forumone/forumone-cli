@@ -10,12 +10,12 @@ export interface ServiceCommand extends Command {
   detach(): Promise<string>;
 }
 
-function runComposeService(
+async function runComposeService(
   service: string,
   serviceArgs: ReadonlyArray<string>,
   { composeArgs = [], cwd, ...options }: RunComposeServiceOptions,
-): ServiceCommand {
-  const command = runCompose(
+): Promise<ServiceCommand> {
+  const command = await runCompose(
     ['run', '--rm', ...composeArgs, service, ...serviceArgs],
     {
       cwd,
@@ -23,7 +23,7 @@ function runComposeService(
     },
   );
 
-  const detachCommand = runCompose(
+  const detachCommand = await runCompose(
     ['run', '-d', ...composeArgs, service, ...serviceArgs],
     {
       cwd,
