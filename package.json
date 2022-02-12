@@ -13,7 +13,7 @@
     "@oclif/plugin-help": "^2.1.4",
     "@oclif/plugin-warn-if-update-available": "~1.7.0",
     "@octokit/rest": "~16.16.3",
-    "ajv": "~6.6.2",
+    "ajv": "~6.12.3",
     "cosmiconfig": "~5.0.7",
     "dockerode": "~2.5.8",
     "env-paths": "~2.0.0",
